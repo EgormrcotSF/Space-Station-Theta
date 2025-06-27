@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy70il1s0v8qp"]
+
+[ext_resource type="Texture2D" uid="uid://vg4q5s7rw0oc" path="res://Sprites/Floor/SteelFloorPlate.png" id="1_ovewd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovewd"]
+size = Vector3(0.32, 0.32, 0.001)
+
+[node name="SteelFloorPlate" type="StaticBody3D"]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shaded = true
+texture_filter = 2
+texture = ExtResource("1_ovewd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_ovewd")

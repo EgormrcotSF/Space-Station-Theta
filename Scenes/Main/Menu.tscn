@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1n0a776t53b"]
+
+[ext_resource type="Script" uid="uid://cpn0dstywgqj6" path="res://Scripts/Multiplayer/MultiplayerController.cs" id="1_lxfi0"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lxfi0")
+
+[node name="JoinGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.486
+anchor_right = 0.647
+anchor_bottom = 0.563
+offset_left = -0.440002
+offset_top = 0.0719604
+offset_right = -0.343994
+offset_bottom = 0.175995
+text = "Join Game"
+
+[node name="HostGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.398
+anchor_right = 0.647
+anchor_bottom = 0.475
+offset_left = -0.440033
+offset_top = 0.0959778
+offset_right = -0.343994
+offset_bottom = 0.199982
+text = "Host Game"
+
+[node name="StartGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.576
+anchor_right = 0.647
+anchor_bottom = 0.653
+offset_left = -0.440033
+offset_top = -0.248016
+offset_right = -0.343994
+offset_bottom = -0.144012
+text = "Start Game"
+
+[node name="PlayerNameLine" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.272
+anchor_right = 0.647
+anchor_bottom = 0.326
+offset_left = -0.440033
+offset_top = -0.256012
+offset_right = -0.343994
+offset_bottom = -0.248001
+text = "Guh"
+placeholder_text = "Your Username"
+
+[node name="ServerIPLine" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.336
+anchor_right = 0.575
+anchor_bottom = 0.39
+offset_left = -0.440002
+offset_top = 0.271973
+offset_right = -0.400024
+offset_bottom = 0.279968
+text = "localhost"
+placeholder_text = "Server IP"
+
+[node name="ServerPortLine" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58
+anchor_top = 0.336
+anchor_right = 0.647
+anchor_bottom = 0.39
+offset_left = -0.160034
+offset_top = 0.271988
+offset_right = -0.343994
+offset_bottom = 0.279984
+text = "8910"
+placeholder_text = "Port"
+
+[connection signal="pressed" from="JoinGameButton" to="." method="JoinGamePresssed"]
+[connection signal="pressed" from="HostGameButton" to="." method="HostGamePresssed"]
+[connection signal="pressed" from="StartGameButton" to="." method="StartGamePresssed"]
