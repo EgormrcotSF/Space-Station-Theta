@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vglka5pfvs25"]
+[gd_scene load_steps=11 format=3 uid="uid://vglka5pfvs25"]
 
 [ext_resource type="Script" uid="uid://swv7uq8mg225" path="res://Scripts/Multiplayer/GameScene.cs" id="1_ihoc6"]
 [ext_resource type="PackedScene" uid="uid://choe6dwko25rl" path="res://Scenes/Character/Player/PlayerHumanoidTest.tscn" id="2_fbiyt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dgw4gc6kfxf6f" path="res://Scenes/Wall/GlassWall.tscn" id="7_xpoiw"]
 [ext_resource type="PackedScene" uid="uid://b3cq4sdhyylle" path="res://Scenes/Wall/SteelFrame.tscn" id="8_45y7o"]
 [ext_resource type="PackedScene" uid="uid://b2wfvbe7k5mnb" path="res://Scenes/Airlock/AirlockBasic.tscn" id="9_fw42x"]
+[ext_resource type="PackedScene" uid="uid://df2edqs3xxgll" path="res://Scenes/Airlock/AirlockDocking.tscn" id="9_ihoc6"]
 
 [sub_resource type="Environment" id="Environment_jwv4s"]
 background_energy_multiplier = 0.0
@@ -1151,28 +1152,28 @@ shadow_enabled = true
 
 [node name="OmniLight3D16" type="OmniLight3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -3.59632, 0.900852, -11.551)
-light_color = Color(1, 0.7, 0, 1)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 0.6
 light_indirect_energy = 0.6
 shadow_enabled = true
 
 [node name="OmniLight3D17" type="OmniLight3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -3.59632, 0.111344, -11.551)
-light_color = Color(1, 0.7, 0, 1)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 0.6
 light_indirect_energy = 0.6
 shadow_enabled = true
 
 [node name="OmniLight3D18" type="OmniLight3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -8.40382, 0.900852, -11.551)
-light_color = Color(1, 0.7, 0, 1)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 0.6
 light_indirect_energy = 0.6
 shadow_enabled = true
 
 [node name="OmniLight3D19" type="OmniLight3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -8.40382, 0.111344, -11.551)
-light_color = Color(1, 0.7, 0, 1)
+light_color = Color(1, 0.701961, 0, 1)
 light_energy = 0.6
 light_indirect_energy = 0.6
 shadow_enabled = true
@@ -1212,12 +1213,6 @@ transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, -8, 0.001, -10)
 
 [node name="GlassWall24" parent="." instance=ExtResource("7_xpoiw")]
 transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, -4, 0.001, -8)
-
-[node name="GlassWall27" parent="." instance=ExtResource("7_xpoiw")]
-transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, -1, 0.001, 0)
-
-[node name="GlassWall28" parent="." instance=ExtResource("7_xpoiw")]
-transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, 1, 0.001, 0)
 
 [node name="GlassWall25" parent="." instance=ExtResource("7_xpoiw")]
 transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, -4, 0.001, -9)
@@ -1265,7 +1260,25 @@ transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, -2, 0.002, 1)
 transform = Transform3D(-1.3638e-07, 0, 3.12, 0, 3.12, 0, -3.12, 0, -1.3638e-07, -4, 0, -5)
 
 [node name="AirlockBasic3" parent="." instance=ExtResource("9_fw42x")]
-transform = Transform3D(-3.12, 0, -2.7276e-07, 0, 3.12, 0, 2.7276e-07, 0, -3.12, 0, 0, 0)
+transform = Transform3D(-3.125, 0, -4.71862e-07, 0, 3.125, 0, 4.71862e-07, 0, -3.125, 0, 0, 0)
+
+[node name="AirlockBasic4" parent="." instance=ExtResource("9_fw42x")]
+transform = Transform3D(-3.125, 0, -4.71862e-07, 0, 3.125, 0, 4.71862e-07, 0, -3.125, -1, 0, 0)
+
+[node name="AirlockBasic5" parent="." instance=ExtResource("9_fw42x")]
+transform = Transform3D(-3.125, 0, -4.71862e-07, 0, 3.125, 0, 4.71862e-07, 0, -3.125, 1, 0, 0)
 
 [node name="AirlockBasic2" parent="." instance=ExtResource("9_fw42x")]
 transform = Transform3D(-1.3638e-07, 0, 3.12, 0, 3.12, 0, -3.12, 0, -1.3638e-07, 4, 0, -5)
+
+[node name="AirlockDocking" parent="." instance=ExtResource("9_ihoc6")]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, 5, 0, -11)
+
+[node name="AirlockDocking2" parent="." instance=ExtResource("9_ihoc6")]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, 7, 0, -11)
+
+[node name="AirlockDocking3" parent="." instance=ExtResource("9_ihoc6")]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -7, 0, -11)
+
+[node name="AirlockDocking4" parent="." instance=ExtResource("9_ihoc6")]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -5, 0, -11)
