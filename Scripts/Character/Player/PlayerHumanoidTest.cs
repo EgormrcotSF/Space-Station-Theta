@@ -4,6 +4,7 @@ using System;
 public partial class PlayerHumanoidTest : CharacterBody3D
 {
 	private Camera3D Camera;
+	private RayCast3D InteractRay;
 
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
@@ -13,6 +14,7 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 
 	public override void _Ready()
 	{
+		InteractRay = GetNode<RayCast3D>("Camera3D/InteractRay");
 		Camera = GetNode<Camera3D>("Camera3D");
 		GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").SetMultiplayerAuthority(int.Parse(Name));
 		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
@@ -54,6 +56,19 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 				velocity += GetGravity() * (float)delta;
 			}
 
+			if (Input.IsActionJustPressed("interact"))
+			{
+				//i was added a InteractObject != null because i dont want to get a thousands of errors in output
+				var InteractObject = InteractRay.GetCollider();
+				if (InteractObject != null)
+				{
+					if (InteractObject.HasMethod("Interact"))
+					{
+						Rpc("Interact");
+					}
+				}
+			}
+			//make the mouse free when player hold alt
 			if (Input.IsActionJustPressed("mouse_free"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Visible;
