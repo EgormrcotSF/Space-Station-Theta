@@ -19,17 +19,20 @@ public partial class AirlockBasic : StaticBody3D
 
 	private void BodyEnteredHitbox(Node3D Body)
 	{
+		//if a humanoid enters hitbox, door opens
 		if (Body.IsInGroup("Humanoid") & Open == false)
 		{
 			Open = true;
 			Sprite.Play("Open");
 			Collision.SetDeferred("disabled", true);
+			//start door close timer
 			CloseTimer.Start();
 		}
 	}
 
 	private void CloseTimerTimeout()
 	{
+		//close door when timer ends
 		if (Open)
 		{
 			Open = false;
