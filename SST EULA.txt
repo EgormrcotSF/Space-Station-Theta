@@ -1,0 +1,16 @@
+Preamble
+Upon receipt of a copy of the license object by any means, any person can use it if he accepts and agrees to all the terms of this license. Violation of the license terms grants anyone the right to apply methods of legal and technological protection using the DMCA and/or other legislation of the states under whose jurisdiction violators of the terms of this license. Acceptance of the terms of this license means a definitive conclusion of a simple non–exclusive license, hereinafter referred to as the "Agreement". The Agreement does not include provisions regulating issues related to the processing of personal data.
+
+Definitions
+A Build is an object of Agreement, the result of the original author's work of a team of authors (hereinafter referred to as the "Community"), a complex intellectual property object – a video game that including, but not limited to, source, object code, tools, game assets, specifications, UI/UX design, elements of narrative and other creative character. 
+Contribution – means any original author's work of Contributors, including any modifications or additions to the Build (any source code, object code, correction, tool, sample, graphics, assets, specifications, manuals, documentation), which is intentionally provided from the contributor to the Build.
+
+The scope of rights granted.
+The license grants an anyone the right to make changes in Build solely for the purpose of improving the game. License obliges to publish full source code of the Build with all game assets accessible to everyone completely free. License allows anyone to create a new Build based on Build using this license with condition that new Build will use exclusively this License. License allows anyone to host a server for commercial or non-commercial use. License also allows anyone to play the Build.
+
+A reservation about the types of licenses.
+
+Individual elements of the Build (graphics, sounds) may be distributed under 
+a license other than this one, but allowing public use. Assets have their own license and copyright in the metadata file. If 
+the license type is not specified, such files are distributed under the terms of this license.
+
