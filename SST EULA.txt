@@ -13,4 +13,3 @@ A reservation about the types of licenses.
 Individual elements of the Build (graphics, sounds) may be distributed under 
 a license other than this one, but allowing public use. Assets have their own license and copyright in the metadata file. If 
 the license type is not specified, such files are distributed under the terms of this license.
-
