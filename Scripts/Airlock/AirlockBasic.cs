@@ -18,8 +18,14 @@ public partial class AirlockBasic : StaticBody3D
 		CloseTimer = GetNode<Timer>("CloseTimer");
 	}
 
+	public void Interact()
+	{
+		//This method calls a method with RPC (yes, this is kinda crutch but idk how do i should do normally)
+		Rpc("RpcInteract");
+	}
+
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-	public void interact()
+	public void RpcInteract()
 	{
 		if (Open)
 		{

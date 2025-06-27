@@ -64,7 +64,8 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 				{
 					if (InteractObject.HasMethod("Interact"))
 					{
-						Rpc("Interact");
+						//when player interacts with interactible object, Interact method runs.
+						InteractObject.Call("Interact");
 					}
 				}
 			}
