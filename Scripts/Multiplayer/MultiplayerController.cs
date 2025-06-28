@@ -1,3 +1,4 @@
+//open-source EULA/CLA, see full text in SST EULA.txt
 using System;
 using System.Linq;
 using Godot;

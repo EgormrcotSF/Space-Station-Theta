@@ -1,3 +1,4 @@
+//open-source EULA/CLA, see full text in SST EULA.txt
 using Godot;
 using System;
 
