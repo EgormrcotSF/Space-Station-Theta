@@ -1,4 +1,4 @@
-//open-source EULA/CLA, see full text in SST EULA.txt
+//open-source EULA/CLA, see full text in LICENSE.txt
 using System.Collections.Generic;
 using Godot;
 
