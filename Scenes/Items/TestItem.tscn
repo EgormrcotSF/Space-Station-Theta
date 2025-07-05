@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://xdr078udxlhs"]
+
+[ext_resource type="Texture2D" uid="uid://cdbstm8a68i6t" path="res://icon.svg" id="1_w8eyj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8xbc"]
+size = Vector3(1.30029, 1.28314, 1.27441)
+
+[node name="TestItem" type="RigidBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_w8eyj")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00854492, -0.00204468, 0.00439453)
+shape = SubResource("BoxShape3D_j8xbc")

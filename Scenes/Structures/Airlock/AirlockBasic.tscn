@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2wfvbe7k5mnb"]
+
+[ext_resource type="Texture2D" uid="uid://gujsy8qiwe1t" path="res://Sprites/Structures/Airlock/Basic/AirlockBasic.png" id="1_ls4yu"]
+[ext_resource type="Script" uid="uid://c25t4cbft7esr" path="res://Scripts/Structures/Airlock/AirlockBasic.cs" id="1_pirku"]
+[ext_resource type="Texture2D" uid="uid://dtnw2jrs1igsp" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicLocked.png" id="3_lwsir"]
+[ext_resource type="Texture2D" uid="uid://cpcgpsiwxw4ap" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicNoPower.png" id="4_pabsw"]
+[ext_resource type="Texture2D" uid="uid://ddd88kln2fshm" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen1.png" id="5_wdh2l"]
+[ext_resource type="Texture2D" uid="uid://b1x1utmqx2m80" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen2.png" id="6_aicdf"]
+[ext_resource type="Texture2D" uid="uid://demvxblnbuwg2" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen3.png" id="7_g63gd"]
+[ext_resource type="Texture2D" uid="uid://br5ryhpg4mi6p" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen4.png" id="8_xb334"]
+[ext_resource type="Texture2D" uid="uid://2ttigke1yagf" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen5.png" id="9_0yu5a"]
+[ext_resource type="Texture2D" uid="uid://dn0heqrkor5ui" path="res://Sprites/Structures/Airlock/Basic/AirlockBasicOpen.png" id="10_pdl7w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g31vs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lwsir")
+}],
+"loop": true,
+"name": &"Locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pabsw")
+}],
+"loop": true,
+"name": &"Nopower",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ls4yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wdh2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_aicdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g63gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xb334")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0yu5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pdl7w")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 20.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovewd"]
+size = Vector3(0.32, 0.001, 0.32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ls4yu"]
+size = Vector3(0.328, 0.328, 0.328)
+
+[node name="AirlockBasic" type="StaticBody3D"]
+transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, 0, 0, 0)
+script = ExtResource("1_pirku")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 9.09495e-15, 0, -9.09495e-15, 1, 0, 0.16, 0)
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_g31vs")
+animation = &"Open"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_ovewd")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 9.09495e-15, 0, -9.09495e-15, 1, 0, 0.16, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.61733e-19, 0, 2.61733e-19, 1, 0.00012207, 0.000732422, -6.03511e-21)
+shape = SubResource("BoxShape3D_ls4yu")
+
+[node name="CloseTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="body_entered" from="Area3D" to="." method="BodyEnteredHitbox"]
+[connection signal="timeout" from="CloseTimer" to="." method="CloseTimerTimeout"]

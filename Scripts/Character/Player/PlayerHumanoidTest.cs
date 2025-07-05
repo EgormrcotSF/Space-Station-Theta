@@ -70,6 +70,12 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 					}
 				}
 			}
+
+			if (Input.IsActionJustPressed("takeitem"))
+			{
+				RigidBody3D TakeObject = 
+			}
+
 			//make the mouse free when player hold alt
 			if (Input.IsActionJustPressed("mouse_free"))
 			{

@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://l8mcv6chlkko"]
+
+[ext_resource type="Texture2D" uid="uid://c2afaktofwysc" path="res://Sprites/Structures/Wall/SteelWall.png" id="1_80mpt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovewd"]
+size = Vector3(0.31, 0.31, 0.31)
+
+[node name="SteelWall" type="StaticBody3D"]
+transform = Transform3D(3.12, 0, 0, 0, 3.12, 0, 0, 0, 3.12, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.18557e-07, 1, 0, -1, -2.18557e-07, 0, 0.32, 0)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1.31134e-07, 1, 1, -5.73206e-15, 4.37114e-08, 0, 1, 1.31134e-07, 0.16, 0.16, 0)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(4.37114e-08, 4.37114e-08, -1, 1, -5.73206e-15, 4.37114e-08, -3.82137e-15, -1, -4.37114e-08, -0.16, 0.16, 0)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(1.91068e-15, 1, 8.74228e-08, 1, -5.73206e-15, 4.37114e-08, 4.37114e-08, 8.74228e-08, -1, 0, 0.16, -0.16)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(-5.73206e-15, -1, -9.09495e-15, 1, -5.73206e-15, 4.37114e-08, -4.37114e-08, -9.09495e-15, 1, 0, 0.16, 0.16)
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_80mpt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.16, 0)
+shape = SubResource("BoxShape3D_ovewd")
