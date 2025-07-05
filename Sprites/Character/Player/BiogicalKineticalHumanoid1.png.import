@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcaf2uow83iur"
-path.s3tc="res://.godot/imported/PlayerHumanoidTest1.png-fb2a78963c56b210017ba4212b8ead4f.s3tc.ctex"
+uid="uid://o7bhj5eqgapo"
+path="res://.godot/imported/BiogicalKineticalHumanoid1.png-4d390f247183f227766f7686d0573a65.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Character/Player/PlayerHumanoidTest1.png"
-dest_files=["res://.godot/imported/PlayerHumanoidTest1.png-fb2a78963c56b210017ba4212b8ead4f.s3tc.ctex"]
+source_file="res://Sprites/Character/Player/BiogicalKineticalHumanoid1.png"
+dest_files=["res://.godot/imported/BiogicalKineticalHumanoid1.png-4d390f247183f227766f7686d0573a65.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://vglka5pfvs25"]
 
 [ext_resource type="Script" uid="uid://swv7uq8mg225" path="res://Scripts/Multiplayer/GameScene.cs" id="1_ihoc6"]
-[ext_resource type="PackedScene" uid="uid://choe6dwko25rl" path="res://Scenes/Character/Player/PlayerHumanoidTest.tscn" id="2_fbiyt"]
+[ext_resource type="PackedScene" uid="uid://choe6dwko25rl" path="res://Scenes/Character/Player/BiogicalKineticalHumanoid.tscn" id="2_fbiyt"]
 [ext_resource type="PackedScene" uid="uid://dy70il1s0v8qp" path="res://Scenes/Structures/Floor/SteelPlateFloor.tscn" id="4_5ltem"]
 [ext_resource type="PackedScene" uid="uid://l8mcv6chlkko" path="res://Scenes/Structures/Wall/SteelWall.tscn" id="5_tmrco"]
 [ext_resource type="PackedScene" uid="uid://begqyco02dhhj" path="res://Scenes/Structures/Floor/FloorFrame.tscn" id="6_3uien"]

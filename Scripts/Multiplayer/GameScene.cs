@@ -11,7 +11,7 @@ public partial class GameScene : Node3D
 		int index = 0;
 		foreach (var item in GameManager.Players)
 		{
-			PlayerHumanoidTest CurrentPlayer = PlayerScene.Instantiate<PlayerHumanoidTest>();
+			BiogicalKineticalHumanoid CurrentPlayer = PlayerScene.Instantiate<BiogicalKineticalHumanoid>();
 			CurrentPlayer.Name = item.Id.ToString();
 			AddChild(CurrentPlayer);
 			foreach (Node3D SpawnPoint in GetTree().GetNodesInGroup("PlayerSpawnPoints"))

@@ -2,11 +2,11 @@
 using Godot;
 using System;
 
-public partial class PlayerHumanoidTest : CharacterBody3D
+public partial class BiogicalKineticalHumanoid : CharacterBody3D
 {
 	private Camera3D Camera;
 	private RayCast3D InteractRay;
-
+	
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
 
@@ -74,13 +74,9 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 			if (Input.IsActionJustPressed("takeitem"))
 			{
 				var TakeCollider = InteractRay.GetCollider();
-				if (TakeCollider != null)
+				if (TakeCollider is IPickable PickableItem)
 				{
-					if (TakeCollider.HasMethod("TakeObject"))
-					{
-						//when player takes item, TakeObject method runs.
-						TakeCollider.Call("TakeObject", GetNode<CharacterBody3D>("."));
-					}
+  					PickableItem.PickUp(this);
 				}
 			}
 
