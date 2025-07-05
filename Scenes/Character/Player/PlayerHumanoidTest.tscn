@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://choe6dwko25rl"]
+[gd_scene load_steps=6 format=3 uid="uid://choe6dwko25rl"]
 
 [ext_resource type="Script" uid="uid://dip7ycr8whmf2" path="res://Scripts/Character/Player/PlayerHumanoidTest.cs" id="1_mt5bc"]
 [ext_resource type="Texture2D" uid="uid://bcaf2uow83iur" path="res://Sprites/Character/Player/PlayerHumanoidTest1.png" id="2_ps644"]
+[ext_resource type="Texture2D" uid="uid://bf03fubqq01hb" path="res://Sprites/UI/HUD/Crosshair.png" id="3_hqb5o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yqu6k"]
 radius = 0.279915
@@ -28,10 +29,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0729617, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0153315, 0)
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -2)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../Camera3D")
 replication_interval = 0.05
 delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_ps644")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hqb5o")
