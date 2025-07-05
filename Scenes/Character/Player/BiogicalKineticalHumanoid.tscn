@@ -18,6 +18,7 @@ script = ExtResource("1_mt5bc")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -0.085, 0)
+shaded = true
 texture_filter = 2
 texture = ExtResource("2_qnoku")
 
@@ -53,3 +54,68 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hqb5o")
+
+[node name="Hands" type="Panel" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -50.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Left" type="Panel" parent="CanvasLayer/Hands"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.5
+offset_right = -5.0
+offset_bottom = -2.5
+
+[node name="Label" type="Label" parent="CanvasLayer/Hands/Left"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.987
+anchor_top = 1.0
+anchor_right = 0.987
+anchor_bottom = 1.0
+offset_left = -146.05
+offset_top = -20.0
+offset_right = -0.0500031
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Hand empty"
+horizontal_alignment = 2
+
+[node name="Right" type="Panel" parent="CanvasLayer/Hands"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.5
+offset_right = -5.0
+offset_bottom = -2.5
+
+[node name="Label" type="Label" parent="CanvasLayer/Hands/Right"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 1.0
+anchor_right = 0.013
+anchor_bottom = 1.0
+offset_left = 0.05
+offset_top = -20.0
+offset_right = 146.05
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Hand empty"
