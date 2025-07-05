@@ -1285,4 +1285,4 @@ transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -7, 0, -11)
 transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -5, 0, -11)
 
 [node name="TestItem" parent="." instance=ExtResource("10_fbiyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679045, 0.641562, -3.67222)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679045, 0.670947, -3.67222)

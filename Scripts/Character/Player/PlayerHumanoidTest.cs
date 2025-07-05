@@ -73,7 +73,15 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 
 			if (Input.IsActionJustPressed("takeitem"))
 			{
-				RigidBody3D TakeObject = 
+				var TakeCollider = InteractRay.GetCollider();
+				if (TakeCollider != null)
+				{
+					if (TakeCollider.HasMethod("TakeObject"))
+					{
+						//when player takes item, TakeObject method runs.
+						TakeCollider.Call("TakeObject", GetNode<CharacterBody3D>("."));
+					}
+				}
 			}
 
 			//make the mouse free when player hold alt
@@ -109,5 +117,10 @@ public partial class PlayerHumanoidTest : CharacterBody3D
 			//Smooth movement without sending extra packets
 			//GlobalPosition = SyncPosition.Lerp(SyncPosition, .1f);
 		}
+	}
+
+	public void ReturnTakingItem()
+	{
+		GD.Print("You are taken the item");
 	}
 }
