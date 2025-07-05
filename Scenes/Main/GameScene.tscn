@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://vglka5pfvs25"]
+[gd_scene load_steps=12 format=3 uid="uid://vglka5pfvs25"]
 
 [ext_resource type="Script" uid="uid://swv7uq8mg225" path="res://Scripts/Multiplayer/GameScene.cs" id="1_ihoc6"]
 [ext_resource type="PackedScene" uid="uid://choe6dwko25rl" path="res://Scenes/Character/Player/PlayerHumanoidTest.tscn" id="2_fbiyt"]
-[ext_resource type="PackedScene" uid="uid://dy70il1s0v8qp" path="res://Scenes/Floor/SteelPlateFloor.tscn" id="4_5ltem"]
-[ext_resource type="PackedScene" uid="uid://l8mcv6chlkko" path="res://Scenes/Wall/SteelWall.tscn" id="5_tmrco"]
-[ext_resource type="PackedScene" uid="uid://begqyco02dhhj" path="res://Scenes/Floor/FloorFrame.tscn" id="6_3uien"]
-[ext_resource type="PackedScene" uid="uid://dgw4gc6kfxf6f" path="res://Scenes/Wall/GlassWall.tscn" id="7_xpoiw"]
-[ext_resource type="PackedScene" uid="uid://b3cq4sdhyylle" path="res://Scenes/Wall/SteelFrame.tscn" id="8_45y7o"]
-[ext_resource type="PackedScene" uid="uid://b2wfvbe7k5mnb" path="res://Scenes/Airlock/AirlockBasic.tscn" id="9_fw42x"]
-[ext_resource type="PackedScene" uid="uid://df2edqs3xxgll" path="res://Scenes/Airlock/AirlockDocking.tscn" id="9_ihoc6"]
+[ext_resource type="PackedScene" uid="uid://dy70il1s0v8qp" path="res://Scenes/Structures/Floor/SteelPlateFloor.tscn" id="4_5ltem"]
+[ext_resource type="PackedScene" uid="uid://l8mcv6chlkko" path="res://Scenes/Structures/Wall/SteelWall.tscn" id="5_tmrco"]
+[ext_resource type="PackedScene" uid="uid://begqyco02dhhj" path="res://Scenes/Structures/Floor/FloorFrame.tscn" id="6_3uien"]
+[ext_resource type="PackedScene" uid="uid://dgw4gc6kfxf6f" path="res://Scenes/Structures/Wall/GlassWall.tscn" id="7_xpoiw"]
+[ext_resource type="PackedScene" uid="uid://b3cq4sdhyylle" path="res://Scenes/Structures/Wall/SteelFrame.tscn" id="8_45y7o"]
+[ext_resource type="PackedScene" uid="uid://b2wfvbe7k5mnb" path="res://Scenes/Structures/Airlock/AirlockBasic.tscn" id="9_fw42x"]
+[ext_resource type="PackedScene" uid="uid://df2edqs3xxgll" path="res://Scenes/Structures/Airlock/AirlockDocking.tscn" id="9_ihoc6"]
+[ext_resource type="PackedScene" uid="uid://xdr078udxlhs" path="res://Scenes/Items/TestItem.tscn" id="10_fbiyt"]
 
 [sub_resource type="Environment" id="Environment_jwv4s"]
 background_energy_multiplier = 0.0
@@ -1282,3 +1283,6 @@ transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -7, 0, -11)
 
 [node name="AirlockDocking4" parent="." instance=ExtResource("9_ihoc6")]
 transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, -5, 0, -11)
+
+[node name="TestItem" parent="." instance=ExtResource("10_fbiyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679045, 0.641562, -3.67222)
