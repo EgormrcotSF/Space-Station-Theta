@@ -4,13 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cdbstm8a68i6t" path="res://icon.svg" id="1_w8eyj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8xbc"]
-size = Vector3(0.1, 0.166089, 0.1)
 
 [node name="TestItem" type="RigidBody3D"]
 script = ExtResource("1_j8xbc")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.05, 0)
 billboard = 2
 texture = ExtResource("1_w8eyj")
 
