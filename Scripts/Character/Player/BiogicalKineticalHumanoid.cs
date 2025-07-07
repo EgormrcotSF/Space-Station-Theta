@@ -23,6 +23,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
 		{
 			Camera.MakeCurrent();
+			PlayerSprite.Hide();
 		}
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -78,7 +79,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				var TakeCollider = InteractRay.GetCollider();
 				if (TakeCollider is IPickable PickableItem)
 				{
-  					PickableItem.PickUp(this);
+					PickableItem.PickUp(this);
 				}
 			}
 

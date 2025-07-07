@@ -14,7 +14,6 @@ shader_parameter/sprite_sheet = ExtResource("3_j8mlb")
 shader_parameter/directions_count = 4
 shader_parameter/frames_count = 1
 shader_parameter/frame = 1
-shader_parameter/y_angle = 0.0
 shader_parameter/starting_angle = 0.0
 shader_parameter/directions_on_horizontal_axis = false
 shader_parameter/clockwise = false
