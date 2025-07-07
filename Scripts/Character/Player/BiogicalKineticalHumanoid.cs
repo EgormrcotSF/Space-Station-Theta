@@ -12,7 +12,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	public const float MouseSensitivity = 0.002f;
 
 	//for smooth movement
-	//private Vector3 SyncPosition = new Vector3(0, 0, 0);
+	private Vector3 SyncPosition = new Vector3(0, 0, 0);
 
 	public override void _Ready()
 	{
@@ -108,12 +108,12 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 			Velocity = velocity;
 			MoveAndSlide();
-			//SyncPosition = GlobalPosition;
+			SyncPosition = GlobalPosition;
 		}
 		else
 		{
 			//Smooth movement without sending extra packets
-			//GlobalPosition = SyncPosition.Lerp(SyncPosition, .1f);
+			GlobalPosition = GlobalPosition.Lerp(SyncPosition, .1f);
 		}
 	}
 }

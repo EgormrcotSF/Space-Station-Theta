@@ -18,19 +18,16 @@ shader_parameter/directions_count = 4
 shader_parameter/frames_count = 1
 shader_parameter/frame = 1
 shader_parameter/y_angle = 0.0
-shader_parameter/starting_angle = 1.6
+shader_parameter/starting_angle = 1.57
 shader_parameter/directions_on_horizontal_axis = false
 shader_parameter/clockwise = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_cjr0r"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ps644"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath(".:SyncPosition")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [node name="BiogicalKineticalHumanoid" type="CharacterBody3D" groups=["Humanoid"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -52,8 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0153315, 0)
 target_position = Vector3(0, 0, -2)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 0.05
-delta_interval = 0.05
+replication_interval = 0.2
+delta_interval = 0.2
 replication_config = SubResource("SceneReplicationConfig_ps644")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
