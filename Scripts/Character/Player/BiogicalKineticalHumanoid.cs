@@ -6,6 +6,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 {
 	private Camera3D Camera;
 	private RayCast3D InteractRay;
+	private MeshInstance3D PlayerSprite;
 	
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
@@ -15,6 +16,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 	public override void _Ready()
 	{
+		PlayerSprite = GetNode<MeshInstance3D>("MeshInstance3D");
 		InteractRay = GetNode<RayCast3D>("Camera3D/InteractRay");
 		Camera = GetNode<Camera3D>("Camera3D");
 		GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").SetMultiplayerAuthority(int.Parse(Name));
