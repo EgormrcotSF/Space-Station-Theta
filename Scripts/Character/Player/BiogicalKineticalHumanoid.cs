@@ -114,9 +114,4 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			//GlobalPosition = SyncPosition.Lerp(SyncPosition, .1f);
 		}
 	}
-
-	public void ReturnTakingItem()
-	{
-		GD.Print("You are taken the item");
-	}
 }
