@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-public partial class AirlockBasic : StaticBody3D
+public partial class AirlockBasic : StaticBody3D, Interaction
 {
 	private CollisionShape3D Collision;
 	private AnimatedSprite3D Sprite;
@@ -24,6 +24,12 @@ public partial class AirlockBasic : StaticBody3D
 		//This method calls a method with RPC (yes, this is kinda crutch but idk how do i should do normally)
 		Rpc("RpcInteract");
 	}
+
+	public void PickUp(CharacterBody3D Picker)
+    {
+		//This method calls a method with RPC (yes, this is kinda crutch but idk how do i should do normally)
+        Rpc("RpcInteract");
+    }
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	public void RpcInteract()

@@ -62,22 +62,17 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 			if (Input.IsActionJustPressed("interact"))
 			{
-				//i was added a InteractObject != null because i dont want to get a thousands of errors in output
-				var InteractObject = InteractRay.GetCollider();
-				if (InteractObject != null)
+				var InteractCollider = InteractRay.GetCollider();
+				if (InteractCollider is Interaction InteractibleItem)
 				{
-					if (InteractObject.HasMethod("Interact"))
-					{
-						//when player interacts with interactible object, Interact method runs.
-						InteractObject.Call("Interact");
-					}
+					InteractibleItem.Interact();
 				}
 			}
 
 			if (Input.IsActionJustPressed("takeitem"))
 			{
 				var TakeCollider = InteractRay.GetCollider();
-				if (TakeCollider is IPickable PickableItem)
+				if (TakeCollider is Interaction PickableItem)
 				{
 					PickableItem.PickUp(this);
 				}

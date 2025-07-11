@@ -2,7 +2,9 @@
 using Godot;
 using System;
 
-public interface IPickable
+public interface Interaction
 {
 	void PickUp(CharacterBody3D Picker);
+
+	void Interact();
 }
