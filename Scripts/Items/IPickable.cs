@@ -4,6 +4,5 @@ using System;
 
 public interface IPickable
 {
-	[Rpc(MultiplayerApi.RpcMode.AnyPeer)]
 	void PickUp(CharacterBody3D Picker);
 }

@@ -7,7 +7,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	private Camera3D Camera;
 	private RayCast3D InteractRay;
 	private MeshInstance3D PlayerSprite;
-	
+
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
 
