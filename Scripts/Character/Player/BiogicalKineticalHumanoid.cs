@@ -4,12 +4,19 @@ using System;
 
 public partial class BiogicalKineticalHumanoid : CharacterBody3D
 {
+	//Node variables
 	private Camera3D Camera;
 	private RayCast3D InteractRay;
 	private MeshInstance3D PlayerSprite;
+	private LineEdit ChatLineEdit;
+	private TextEdit ChatText;
 
+	//Physical characteristics
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
+
+	//For Chat System
+	private string ChatTextMessage;
 
 	//for smooth movement
 	private Vector3 SyncPosition = new Vector3(0, 0, 0);
@@ -19,6 +26,8 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		PlayerSprite = GetNode<MeshInstance3D>("MeshInstance3D");
 		InteractRay = GetNode<RayCast3D>("Camera3D/InteractRay");
 		Camera = GetNode<Camera3D>("Camera3D");
+		ChatLineEdit = GetNode<LineEdit>("CanvasLayer/Chat/ChatLineEdit");
+		ChatText = GetNode<TextEdit>("CanvasLayer/Chat/ChatText");
 		GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").SetMultiplayerAuthority(int.Parse(Name));
 		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
 		{
@@ -112,4 +121,13 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			GlobalPosition = GlobalPosition.Lerp(SyncPosition, .1f);
 		}
 	}
+
+	public void ChatTextSend()
+	{
+		GD.Print(ChatLineEdit.Text);
+		ChatTextMessage = ChatLineEdit.Text;
+		ChatLineEdit.Clear();
+		ChatText.Text += ChatTextMessage;
+	}
+
 }
