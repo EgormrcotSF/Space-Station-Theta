@@ -73,20 +73,15 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			{
 				ControlsDisabled = true;
 			}
-			//Force focus for chat LineEdit
-				if (Input.IsActionJustPressed("open_chat"))
+			//When player press T, this thing force focus for chat LineEdit
+			if (Input.IsActionJustPressed("open_chat"))
+			{
+				if (!ChatLineEdit.HasFocus())
 				{
-					if (!ChatLineEdit.HasFocus())
-					{
-						ControlsDisabled = true;
-						ChatLineEdit.GrabFocus();
-					}
-					else
-					{
-						ControlsDisabled = false;
-						ChatLineEdit.ReleaseFocus();
-					}
+					ControlsDisabled = true;
+					ChatLineEdit.GrabFocus();
 				}
+			}
 
 			//Make the mouse free when player hold alt
 			if (Input.IsActionJustPressed("mouse_free"))
@@ -142,11 +137,17 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		}
 	}
 
+	//Attached godot events
 	public void ChatTextSubmitted(string SubmittedText)
 	{
 		ChatLineEdit.Clear();
 		ControlsDisabled = false;
 		ChatLineEdit.ReleaseFocus();
 		ChatText.Text += SubmittedText;
+	}
+
+	public void ChatLineEditFocusExited()
+	{
+		ControlsDisabled = false;
 	}
 }
