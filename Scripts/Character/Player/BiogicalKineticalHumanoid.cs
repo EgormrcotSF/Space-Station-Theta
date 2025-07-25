@@ -74,7 +74,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				ControlsDisabled = true;
 			}
 			//When player press T, this thing force focus for chat LineEdit
-			if (Input.IsActionJustPressed("open_chat"))
+			if (Input.IsActionJustPressed("OpenChat"))
 			{
 				if (!ChatLineEdit.HasFocus())
 				{
@@ -82,7 +82,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 					ChatLineEdit.GrabFocus();
 				}
 			}
-			if (Input.IsActionJustPressed("escape"))
+			if (Input.IsActionJustPressed("Escape"))
 			{
 				if (ChatLineEdit.HasFocus())
 				{
@@ -95,19 +95,19 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				}
 			}
 			//Make the mouse free when player hold alt
-			if (Input.IsActionJustPressed("mouse_free"))
+			if (Input.IsActionJustPressed("MouseFree"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 
-			if (Input.IsActionJustReleased("mouse_free"))
+			if (Input.IsActionJustReleased("MouseFree"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
 			//These controls are disabled if ControlsDisabled varible is true
 			if (!ControlsDisabled)
 			{
-				if (Input.IsActionJustPressed("interact"))
+				if (Input.IsActionJustPressed("Interact"))
 				{
 					var InteractCollider = InteractRay.GetCollider();
 					if (InteractCollider is Interaction InteractibleItem)
@@ -116,7 +116,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 					}
 				}
 
-				if (Input.IsActionJustPressed("takeitem"))
+				if (Input.IsActionJustPressed("TakeItem"))
 				{
 					var TakeCollider = InteractRay.GetCollider();
 					if (TakeCollider is Interaction PickableItem)
@@ -124,7 +124,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 						PickableItem.PickUp(this);
 					}
 				}
-				Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
+				Vector2 inputDir = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBack");
 				Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 				if (direction != Vector3.Zero)
 				{
