@@ -147,29 +147,28 @@ grow_horizontal = 0
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.183
-anchor_top = 0.988
+anchor_top = 0.836
 anchor_right = 0.993
 anchor_bottom = 0.988
-offset_left = -0.0440025
-offset_top = -22.056
+offset_left = -0.0440063
+offset_top = -0.0160065
 offset_right = -0.124023
 offset_bottom = -0.0559998
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 10
-text = "Loreum ipsum lol u dead"
 
 [node name="ChannelButton" type="Button" parent="CanvasLayer/Chat"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.007
-anchor_top = 0.988
-anchor_right = 0.179
+anchor_top = 0.834
+anchor_right = 0.175
 anchor_bottom = 0.988
-offset_left = 0.124
-offset_top = -22.056
-offset_right = 0.0279999
-offset_bottom = -0.0559998
+offset_left = 0.117
+offset_top = 0.0699921
+offset_right = -0.0750046
+offset_bottom = -0.259995
 theme_override_font_sizes/font_size = 10
 text = "Near"
 
@@ -179,16 +178,13 @@ anchors_preset = -1
 anchor_left = 0.007
 anchor_top = 0.013
 anchor_right = 0.993
-anchor_bottom = 0.833
-offset_left = 0.0189999
-offset_top = -0.0280001
-offset_right = -0.0190125
-offset_bottom = 0.0519867
+anchor_bottom = 0.821
+offset_left = 0.117
+offset_top = 0.115
+offset_right = -0.117004
+offset_bottom = -0.0450058
 theme_override_font_sizes/font_size = 12
-text = "Log^= test
-AHAHAHHAHAHAHAHAHAHAHAHAH AAHAHAAHH AH HAH HAH HAH AH"
 editable = false
 wrap_mode = 1
 
-[connection signal="focus_exited" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatLineEditFocusExited"]
 [connection signal="text_submitted" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatTextSubmitted"]

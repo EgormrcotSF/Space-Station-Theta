@@ -82,7 +82,18 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 					ChatLineEdit.GrabFocus();
 				}
 			}
-
+			if (Input.IsActionJustPressed("escape"))
+			{
+				if (ChatLineEdit.HasFocus())
+				{
+					ChatLineEdit.ReleaseFocus();
+					ControlsDisabled = false;
+				}
+				else
+				{
+					GetTree().Quit();
+				}
+			}
 			//Make the mouse free when player hold alt
 			if (Input.IsActionJustPressed("mouse_free"))
 			{
@@ -144,10 +155,5 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		ControlsDisabled = false;
 		ChatLineEdit.ReleaseFocus();
 		ChatText.Text += SubmittedText;
-	}
-
-	public void ChatLineEditFocusExited()
-	{
-		ControlsDisabled = false;
 	}
 }
