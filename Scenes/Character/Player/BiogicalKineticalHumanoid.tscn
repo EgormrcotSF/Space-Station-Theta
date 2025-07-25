@@ -189,4 +189,4 @@ AHAHAHHAHAHAHAHAHAHAHAHAH AAHAHAAHH AH HAH HAH HAH AH"
 editable = false
 wrap_mode = 1
 
-[connection signal="text_submitted" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatTextSend"]
+[connection signal="text_submitted" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatTextSubmitted"]

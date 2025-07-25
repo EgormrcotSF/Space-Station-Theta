@@ -15,10 +15,10 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
 
-	//For Chat System
-	private string ChatTextMessage;
-
-	//for smooth movement
+	//Misc variables
+	//If true - disables most of controls
+	private bool ControlsDisabled = false;
+	//Smooth movement
 	private Vector3 SyncPosition = new Vector3(0, 0, 0);
 
 	public override void _Ready()
@@ -63,31 +63,32 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		{
 			Vector3 velocity = Velocity;
 
-			// Add the gravity.
+			//Add the gravity.
 			if (!IsOnFloor())
 			{
 				velocity += GetGravity() * (float)delta;
 			}
-
-			if (Input.IsActionJustPressed("interact"))
+			//Chat module
+			if (ChatLineEdit.HasFocus())
 			{
-				var InteractCollider = InteractRay.GetCollider();
-				if (InteractCollider is Interaction InteractibleItem)
-				{
-					InteractibleItem.Interact();
-				}
+				ControlsDisabled = true;
 			}
-
-			if (Input.IsActionJustPressed("takeitem"))
-			{
-				var TakeCollider = InteractRay.GetCollider();
-				if (TakeCollider is Interaction PickableItem)
+			//Force focus for chat LineEdit
+				if (Input.IsActionJustPressed("open_chat"))
 				{
-					PickableItem.PickUp(this);
+					if (!ChatLineEdit.HasFocus())
+					{
+						ControlsDisabled = true;
+						ChatLineEdit.GrabFocus();
+					}
+					else
+					{
+						ControlsDisabled = false;
+						ChatLineEdit.ReleaseFocus();
+					}
 				}
-			}
 
-			//make the mouse free when player hold alt
+			//Make the mouse free when player hold alt
 			if (Input.IsActionJustPressed("mouse_free"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Visible;
@@ -97,20 +98,39 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			{
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
-
-			Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
-			Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-			if (direction != Vector3.Zero)
+			//These controls are disabled if ControlsDisabled varible is true
+			if (!ControlsDisabled)
 			{
-				velocity.X = direction.X * Speed;
-				velocity.Z = direction.Z * Speed;
-			}
-			else
-			{
-				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-				velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-			}
+				if (Input.IsActionJustPressed("interact"))
+				{
+					var InteractCollider = InteractRay.GetCollider();
+					if (InteractCollider is Interaction InteractibleItem)
+					{
+						InteractibleItem.Interact();
+					}
+				}
 
+				if (Input.IsActionJustPressed("takeitem"))
+				{
+					var TakeCollider = InteractRay.GetCollider();
+					if (TakeCollider is Interaction PickableItem)
+					{
+						PickableItem.PickUp(this);
+					}
+				}
+				Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
+				Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+				if (direction != Vector3.Zero)
+				{
+					velocity.X = direction.X * Speed;
+					velocity.Z = direction.Z * Speed;
+				}
+				else
+				{
+					velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+					velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+				}
+			}
 			Velocity = velocity;
 			MoveAndSlide();
 			SyncPosition = GlobalPosition;
@@ -122,12 +142,11 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		}
 	}
 
-	public void ChatTextSend()
+	public void ChatTextSubmitted(string SubmittedText)
 	{
-		GD.Print(ChatLineEdit.Text);
-		ChatTextMessage = ChatLineEdit.Text;
 		ChatLineEdit.Clear();
-		ChatText.Text += ChatTextMessage;
+		ControlsDisabled = false;
+		ChatLineEdit.ReleaseFocus();
+		ChatText.Text += SubmittedText;
 	}
-
 }
