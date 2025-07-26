@@ -5,11 +5,12 @@ using System;
 public partial class BiogicalKineticalHumanoid : CharacterBody3D
 {
 	//Node variables
-	private Camera3D Camera;
-	private RayCast3D InteractRay;
-	private MeshInstance3D PlayerSprite;
-	private LineEdit ChatLineEdit;
-	private TextEdit ChatText;
+	[Export] private Camera3D Camera;
+	[Export] private RayCast3D InteractRay;
+	[Export] private MeshInstance3D PlayerSprite;
+	[Export] private LineEdit ChatLineEdit;
+	[Export] private TextEdit ChatText;
+	[Export] private MultiplayerSynchronizer LocalSynchronizer;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
@@ -20,16 +21,14 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	private bool ControlsDisabled = false;
 	//Smooth movement
 	private Vector3 SyncPosition = new Vector3(0, 0, 0);
+	//Does this player controls this character?
+	private bool Authority;
 
 	public override void _Ready()
 	{
-		PlayerSprite = GetNode<MeshInstance3D>("MeshInstance3D");
-		InteractRay = GetNode<RayCast3D>("Camera3D/InteractRay");
-		Camera = GetNode<Camera3D>("Camera3D");
-		ChatLineEdit = GetNode<LineEdit>("CanvasLayer/Chat/ChatLineEdit");
-		ChatText = GetNode<TextEdit>("CanvasLayer/Chat/ChatText");
-		GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").SetMultiplayerAuthority(int.Parse(Name));
-		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
+		LocalSynchronizer.SetMultiplayerAuthority(int.Parse(Name));
+		Authority = LocalSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
+		if (Authority)
 		{
 			Camera.MakeCurrent();
 			PlayerSprite.Hide();
@@ -40,7 +39,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
+		if (Authority)
 		{
 			if (@event is InputEventMouseMotion mouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
@@ -59,7 +58,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		//If this is a player that controls this character, he will control this character (this code runs).
-		if (GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer").GetMultiplayerAuthority() == Multiplayer.GetUniqueId())
+		if (Authority)
 		{
 			Vector3 velocity = Velocity;
 
