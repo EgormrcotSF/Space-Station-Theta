@@ -52,28 +52,8 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				);
 				RotateY(-mouseMotion.Relative.X * MouseSensitivity);
 			}
-		}
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		//If this is a player that controls this character, he will control this character (this code runs).
-		if (Authority)
-		{
-			Vector3 velocity = Velocity;
-
-			//Add the gravity.
-			if (!IsOnFloor())
-			{
-				velocity += GetGravity() * (float)delta;
-			}
-			//Chat module
-			if (ChatLineEdit.HasFocus())
-			{
-				ControlsDisabled = true;
-			}
 			//When player press T, this thing force focus for chat LineEdit
-			if (Input.IsActionJustPressed("OpenChat"))
+			if (@event.IsActionPressed("OpenChat"))
 			{
 				if (!ChatLineEdit.HasFocus())
 				{
@@ -81,7 +61,8 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 					ChatLineEdit.GrabFocus();
 				}
 			}
-			if (Input.IsActionJustPressed("Escape"))
+			//Escape system
+			if (@event.IsActionPressed("Escape"))
 			{
 				if (ChatLineEdit.HasFocus())
 				{
@@ -94,12 +75,11 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				}
 			}
 			//Make the mouse free when player hold alt
-			if (Input.IsActionJustPressed("MouseFree"))
+			if (@event.IsActionPressed("MouseFree"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
-
-			if (Input.IsActionJustReleased("MouseFree"))
+			if (@event.IsActionReleased("MouseFree"))
 			{
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
@@ -123,6 +103,29 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 						PickableItem.PickUp(this);
 					}
 				}
+			}
+		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		//If this is a player that controls this character, he will control this character (this code runs).
+		if (Authority)
+		{
+			Vector3 velocity = Velocity;
+			//Add the gravity.
+			if (!IsOnFloor())
+			{
+				velocity += GetGravity() * (float)delta;
+			}
+			//If ChatLineEdit have focus, controls disables.
+			if (ChatLineEdit.HasFocus())
+			{
+				ControlsDisabled = true;
+			}
+			//These controls are disabled if ControlsDisabled varible is true
+			if (!ControlsDisabled)
+			{
 				Vector2 inputDir = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBack");
 				Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 				if (direction != Vector3.Zero)
