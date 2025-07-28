@@ -12,6 +12,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Export] private TextEdit ChatText;
 	[Export] private MultiplayerSynchronizer LocalSynchronizer;
 	[Export] private CanvasLayer UICanvasLayer;
+	[Export] private Label3D PopupExternal;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
@@ -166,6 +167,14 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	public void RpcChatTextSubmitteed(string SentText)
 	{
-		ChatText.Text += SentText;
+		if (Authority)
+		{
+			PopupExternal.Text = SentText;
+			ChatText.Text += SentText;
+		}
+		else
+		{
+			PopupExternal.Text = SentText;
+		}
 	}
 }
