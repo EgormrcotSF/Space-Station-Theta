@@ -29,7 +29,7 @@ properties/0/path = NodePath(".:SyncPosition")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer") groups=["Humanoid"]]
+[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer", "UICanvasLayer") groups=["Humanoid"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_mt5bc")
 Camera = NodePath("Camera3D")
@@ -38,6 +38,7 @@ PlayerSprite = NodePath("MeshInstance3D")
 ChatLineEdit = NodePath("CanvasLayer/Chat/ChatLineEdit")
 ChatText = NodePath("CanvasLayer/Chat/ChatText")
 LocalSynchronizer = NodePath("MultiplayerSynchronizer")
+UICanvasLayer = NodePath("CanvasLayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0712968, 0)

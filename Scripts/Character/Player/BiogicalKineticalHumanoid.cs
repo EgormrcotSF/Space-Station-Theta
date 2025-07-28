@@ -11,6 +11,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Export] private LineEdit ChatLineEdit;
 	[Export] private TextEdit ChatText;
 	[Export] private MultiplayerSynchronizer LocalSynchronizer;
+	[Export] private CanvasLayer UICanvasLayer;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
@@ -33,7 +34,10 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			Camera.MakeCurrent();
 			PlayerSprite.Hide();
 		}
-
+		else
+		{
+			UICanvasLayer.QueueFree();
+		}
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -156,6 +160,12 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		ChatLineEdit.Clear();
 		ControlsDisabled = false;
 		ChatLineEdit.ReleaseFocus();
-		ChatText.Text += SubmittedText;
+		Rpc("RpcChatTextSubmitteed", SubmittedText);	
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+	public void RpcChatTextSubmitteed(string SentText)
+	{
+		ChatText.Text += SentText;
 	}
 }
