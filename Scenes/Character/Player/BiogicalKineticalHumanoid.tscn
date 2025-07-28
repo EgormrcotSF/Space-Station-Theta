@@ -29,7 +29,7 @@ properties/0/path = NodePath(".:SyncPosition")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer", "UICanvasLayer", "PopupExternal") groups=["Humanoid"]]
+[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer", "UICanvasLayer", "PopupExternal", "PopupExternalHideTimer") groups=["Humanoid"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_mt5bc")
 Camera = NodePath("Camera3D")
@@ -40,6 +40,7 @@ ChatText = NodePath("CanvasLayer/Chat/ChatText")
 LocalSynchronizer = NodePath("MultiplayerSynchronizer")
 UICanvasLayer = NodePath("CanvasLayer")
 PopupExternal = NodePath("PopupExternal")
+PopupExternalHideTimer = NodePath("PopupExternal/HideTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0712968, 0)
@@ -50,16 +51,21 @@ material_override = SubResource("ShaderMaterial_fqn34")
 mesh = SubResource("QuadMesh_cjr0r")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0729617, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130264, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0153315, 0)
 target_position = Vector3(0, 0, -2)
 
 [node name="PopupExternal" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564501, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474242, 0)
 billboard = 1
 outline_modulate = Color(1, 1, 1, 1)
+font_size = 15
+outline_size = 0
+
+[node name="HideTimer" type="Timer" parent="PopupExternal"]
+one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.1
@@ -200,4 +206,5 @@ theme_override_font_sizes/font_size = 12
 editable = false
 wrap_mode = 1
 
+[connection signal="timeout" from="PopupExternal/HideTimer" to="." method="PopupExternalHideTimerTimeout"]
 [connection signal="text_submitted" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatTextSubmitted"]

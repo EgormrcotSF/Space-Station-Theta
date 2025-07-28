@@ -13,10 +13,14 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Export] private MultiplayerSynchronizer LocalSynchronizer;
 	[Export] private CanvasLayer UICanvasLayer;
 	[Export] private Label3D PopupExternal;
+	[Export] private Timer PopupExternalHideTimer;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
 	public const float MouseSensitivity = 0.002f;
+
+	//Popup constants
+	private const int PopupExternalHideDelayChat = 5;
 
 	//Misc variables
 	//If true - disables most of controls
@@ -156,12 +160,13 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	}
 
 	//Attached godot events
+	//Chat
 	public void ChatTextSubmitted(string SubmittedText)
 	{
 		ChatLineEdit.Clear();
 		ControlsDisabled = false;
 		ChatLineEdit.ReleaseFocus();
-		Rpc("RpcChatTextSubmitteed", SubmittedText);	
+		Rpc("RpcChatTextSubmitteed", SubmittedText);
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -169,12 +174,19 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	{
 		if (Authority)
 		{
-			PopupExternal.Text = SentText;
 			ChatText.Text += SentText;
 		}
 		else
 		{
+			PopupExternalHideTimer.Stop();
 			PopupExternal.Text = SentText;
+			PopupExternalHideTimer.Start(PopupExternalHideDelayChat);
 		}
+	}
+	
+	//Popup
+	public void PopupExternalHideTimerTimeout()
+	{
+		PopupExternal.Text = "";
 	}
 }
