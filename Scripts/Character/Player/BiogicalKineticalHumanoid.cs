@@ -4,7 +4,7 @@ using System;
 
 public partial class BiogicalKineticalHumanoid : CharacterBody3D
 {
-	//Node variables
+	//Export node variables
 	[Export] private Camera3D Camera;
 	[Export] private RayCast3D InteractRay;
 	[Export] private MeshInstance3D PlayerSprite;
@@ -14,6 +14,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Export] private CanvasLayer UICanvasLayer;
 	[Export] private Label3D PopupExternal;
 	[Export] private Timer PopupExternalHideTimer;
+	[Export] private Timer RefreshDelay;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
@@ -29,6 +30,8 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	private Vector3 SyncPosition = new Vector3(0, 0, 0);
 	//Does this player controls this character?
 	private bool Authority;
+	//Character what player controls, empty if Authority = true
+	private Node AuthorityPlayerCharacter;
 
 	public override void _Ready()
 	{
@@ -36,12 +39,18 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		Authority = LocalSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
 		if (Authority)
 		{
+			AddToGroup("AuthorityPlayerCharacter");
 			Camera.MakeCurrent();
 			PlayerSprite.Hide();
 		}
 		else
 		{
 			UICanvasLayer.QueueFree();
+			AuthorityPlayerCharacter = GetTree().GetFirstNodeInGroup("AuthorityPlayerCharacter");
+			if (AuthorityPlayerCharacter == null)
+			{
+				RefreshDelay.Start();
+			}
 		}
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
@@ -181,12 +190,28 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 			PopupExternalHideTimer.Stop();
 			PopupExternal.Text = SentText;
 			PopupExternalHideTimer.Start(PopupExternalHideDelayChat);
+			AuthorityPlayerCharacter.Call("ToAuthorityChatTextSubmitteed", SentText);
 		}
 	}
-	
+
+	public void ToAuthorityChatTextSubmitteed(string SentText)
+	{
+		ChatText.Text += SentText;
+	}
+
 	//Popup
 	public void PopupExternalHideTimerTimeout()
 	{
 		PopupExternal.Text = "";
+	}
+
+	//Refresh Delay
+	public void RefreshDelayTimeout()
+	{
+		AuthorityPlayerCharacter = GetTree().GetFirstNodeInGroup("AuthorityPlayerCharacter");
+		if (AuthorityPlayerCharacter == null)
+		{
+			RefreshDelay.Start();
+		}
 	}
 }

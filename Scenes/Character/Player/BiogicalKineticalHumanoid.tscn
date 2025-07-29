@@ -29,7 +29,7 @@ properties/0/path = NodePath(".:SyncPosition")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer", "UICanvasLayer", "PopupExternal", "PopupExternalHideTimer") groups=["Humanoid"]]
+[node name="BiogicalKineticalHumanoid" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "InteractRay", "PlayerSprite", "ChatLineEdit", "ChatText", "LocalSynchronizer", "UICanvasLayer", "PopupExternal", "PopupExternalHideTimer", "RefreshDelay") groups=["Humanoid"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_mt5bc")
 Camera = NodePath("Camera3D")
@@ -41,6 +41,7 @@ LocalSynchronizer = NodePath("MultiplayerSynchronizer")
 UICanvasLayer = NodePath("CanvasLayer")
 PopupExternal = NodePath("PopupExternal")
 PopupExternalHideTimer = NodePath("PopupExternal/HideTimer")
+RefreshDelay = NodePath("RefreshDelay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0712968, 0)
@@ -66,6 +67,9 @@ outline_size = 0
 
 [node name="HideTimer" type="Timer" parent="PopupExternal"]
 one_shot = true
+
+[node name="RefreshDelay" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.1
@@ -207,4 +211,5 @@ editable = false
 wrap_mode = 1
 
 [connection signal="timeout" from="PopupExternal/HideTimer" to="." method="PopupExternalHideTimerTimeout"]
+[connection signal="timeout" from="RefreshDelay" to="." method="RefreshDelayTimeout"]
 [connection signal="text_submitted" from="CanvasLayer/Chat/ChatLineEdit" to="." method="ChatTextSubmitted"]
