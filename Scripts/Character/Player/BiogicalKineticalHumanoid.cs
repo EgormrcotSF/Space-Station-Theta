@@ -70,15 +70,6 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 				);
 				RotateY(-mouseMotion.Relative.X * MouseSensitivity);
 			}
-			//When player press T, this thing force focus for chat LineEdit
-			if (@event.IsActionPressed("OpenChat"))
-			{
-				if (!ChatLineEdit.HasFocus())
-				{
-					ControlsDisabled = true;
-					ChatLineEdit.GrabFocus();
-				}
-			}
 			//Escape system
 			if (@event.IsActionPressed("Escape"))
 			{
@@ -130,6 +121,15 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		//If this is a player that controls this character, he will control this character (this code runs).
 		if (Authority)
 		{
+			//When player press T, this thing force focus for chat LineEdit. I moved it to _PhysicsProcess cuz in _Input it adding a t to chat line edit.
+			if (Input.IsActionJustPressed("OpenChat"))
+			{
+				if (!ChatLineEdit.HasFocus())
+				{
+					ControlsDisabled = true;
+					ChatLineEdit.GrabFocus();
+				}
+			}
 			Vector3 velocity = Velocity;
 			//Add the gravity.
 			if (!IsOnFloor())
@@ -183,7 +183,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	{
 		if (Authority)
 		{
-			ChatText.Text += SentText;
+			ChatText.Text += SentText + "\n";
 		}
 		else
 		{
@@ -196,7 +196,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 	public void ToAuthorityChatTextSubmitteed(string SentText)
 	{
-		ChatText.Text += SentText;
+		ChatText.Text += SentText + "\n";
 	}
 
 	//Popup
