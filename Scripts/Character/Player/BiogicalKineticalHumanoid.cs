@@ -183,7 +183,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	{
 		if (Authority)
 		{
-			ChatText.Text += SentText + "\n";
+			ChatText.Text += "\n" + SentText;
 		}
 		else
 		{
@@ -196,7 +196,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 
 	public void ToAuthorityChatTextSubmitteed(string SentText)
 	{
-		ChatText.Text += SentText + "\n";
+		ChatText.Text += "\n" + SentText;
 	}
 
 	//Popup

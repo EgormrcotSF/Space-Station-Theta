@@ -207,6 +207,7 @@ offset_top = 0.115
 offset_right = -0.117004
 offset_bottom = -0.0450058
 theme_override_font_sizes/font_size = 12
+text = "Welcome to Space Station Theta! Have a nice day!"
 editable = false
 wrap_mode = 1
 
