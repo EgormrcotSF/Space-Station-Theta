@@ -210,6 +210,7 @@ theme_override_font_sizes/font_size = 12
 text = "Welcome to Space Station Theta! Have a nice day!"
 editable = false
 wrap_mode = 1
+scroll_smooth = true
 
 [connection signal="timeout" from="PopupExternal/HideTimer" to="." method="PopupExternalHideTimerTimeout"]
 [connection signal="timeout" from="RefreshDelay" to="." method="RefreshDelayTimeout"]

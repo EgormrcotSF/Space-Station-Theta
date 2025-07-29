@@ -184,6 +184,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		if (Authority)
 		{
 			ChatText.Text += "\n" + SentText;
+			ChatText.ScrollVertical = 999;
 		}
 		else
 		{
@@ -197,6 +198,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	public void ToAuthorityChatTextSubmitteed(string SentText)
 	{
 		ChatText.Text += "\n" + SentText;
+		ChatText.ScrollVertical = 999;
 	}
 
 	//Popup
