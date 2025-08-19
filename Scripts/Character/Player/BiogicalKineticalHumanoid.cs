@@ -14,7 +14,8 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	[Export] private CanvasLayer UICanvasLayer;
 	[Export] private Label3D PopupExternal;
 	[Export] private Timer PopupExternalHideTimer;
-	[Export] private Timer RefreshDelay;
+
+	private GameScene CurrentGameScene;
 
 	//Physical characteristics
 	public float Speed = 2.7f;
@@ -30,8 +31,6 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	private Vector3 SyncPosition = new Vector3(0, 0, 0);
 	//Does this player controls this character?
 	private bool Authority;
-	//Character what player controls, empty if Authority = true
-	private Node AuthorityPlayerCharacter;
 
 	public override void _Ready()
 	{
@@ -39,20 +38,15 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		Authority = LocalSynchronizer.GetMultiplayerAuthority() == Multiplayer.GetUniqueId();
 		if (Authority)
 		{
-			AddToGroup("AuthorityPlayerCharacter");
 			Camera.MakeCurrent();
 			PlayerSprite.Hide();
 		}
 		else
 		{
 			UICanvasLayer.QueueFree();
-			AuthorityPlayerCharacter = GetTree().GetFirstNodeInGroup("AuthorityPlayerCharacter");
-			if (AuthorityPlayerCharacter == null)
-			{
-				RefreshDelay.Start();
-			}
 		}
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		CurrentGameScene = GetNode<GameScene>("..");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -172,48 +166,20 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	//Chat
 	public void ChatTextSubmitted(string SubmittedText)
 	{
-		ChatLineEdit.Clear();
-		ControlsDisabled = false;
-		ChatLineEdit.ReleaseFocus();
-		Rpc("RpcChatTextSubmitteed", SubmittedText);
+		if (String.IsNullOrEmpty(SubmittedText)) return;
+		Rpc("ChatMessageRecived", SubmittedText);
+		ChatLineEdit.Text = "";
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-	public void RpcChatTextSubmitteed(string SentText)
+	public void ChatMessageRecived(string SentText)
 	{
-		if (Authority)
-		{
-			ChatText.Text += "\n" + SentText;
-			ChatText.ScrollVertical = 999;
-		}
-		else
-		{
-			PopupExternalHideTimer.Stop();
-			PopupExternal.Text = SentText;
-			PopupExternalHideTimer.Start(PopupExternalHideDelayChat);
-			AuthorityPlayerCharacter.Call("ToAuthorityChatTextSubmitteed", SentText);
-		}
-	}
-
-	public void ToAuthorityChatTextSubmitteed(string SentText)
-	{
-		ChatText.Text += "\n" + SentText;
-		ChatText.ScrollVertical = 999;
+		ChatText.Text += SentText + "\n";
 	}
 
 	//Popup
 	public void PopupExternalHideTimerTimeout()
 	{
 		PopupExternal.Text = "";
-	}
-
-	//Refresh Delay
-	public void RefreshDelayTimeout()
-	{
-		AuthorityPlayerCharacter = GetTree().GetFirstNodeInGroup("AuthorityPlayerCharacter");
-		if (AuthorityPlayerCharacter == null)
-		{
-			RefreshDelay.Start();
-		}
 	}
 }
