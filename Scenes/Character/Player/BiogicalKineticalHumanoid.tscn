@@ -65,6 +65,7 @@ font_size = 15
 outline_size = 0
 
 [node name="HideTimer" type="Timer" parent="PopupExternal"]
+wait_time = 5.0
 one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

@@ -171,6 +171,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 		if (String.IsNullOrEmpty(SubmittedText)) return;
 		ChatLineEdit.Clear();
 		CurrentGameScene.SendChatMessage(SubmittedText);
+		Rpc("PopupExternalCall",SubmittedText);
 	}
 	public void GetChatMessage(string Message)
 	{
@@ -179,6 +180,12 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	}
 
 	//Popup
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+	public void PopupExternalCall(string PopupMessage)
+	{
+		PopupExternal.Text = PopupMessage;
+		PopupExternalHideTimer.Start();
+	}
 	public void PopupExternalHideTimerTimeout()
 	{
 		PopupExternal.Text = "";
