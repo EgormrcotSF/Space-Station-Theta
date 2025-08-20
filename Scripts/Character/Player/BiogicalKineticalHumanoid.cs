@@ -166,15 +166,16 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	//Chat
 	public void ChatTextSubmitted(string SubmittedText)
 	{
+		ControlsDisabled = false;
+		ChatLineEdit.ReleaseFocus();
 		if (String.IsNullOrEmpty(SubmittedText)) return;
-		Rpc("ChatMessageRecived", SubmittedText);
-		ChatLineEdit.Text = "";
+		ChatLineEdit.Clear();
+		CurrentGameScene.SendChatMessage(SubmittedText);
 	}
-
-	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-	public void ChatMessageRecived(string SentText)
+	public void GetChatMessage(string Message)
 	{
-		ChatText.Text += SentText + "\n";
+		ChatText.Text += "\n" + Message;
+		ChatText.ScrollVertical = 999;
 	}
 
 	//Popup
