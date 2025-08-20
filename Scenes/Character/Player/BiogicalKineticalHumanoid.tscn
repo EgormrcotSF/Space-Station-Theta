@@ -177,6 +177,7 @@ offset_bottom = -0.0559998
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 10
+max_length = 200
 
 [node name="ChannelButton" type="Button" parent="CanvasLayer/Chat"]
 layout_mode = 1

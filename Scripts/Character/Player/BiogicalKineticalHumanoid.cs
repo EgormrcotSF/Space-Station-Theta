@@ -184,7 +184,7 @@ public partial class BiogicalKineticalHumanoid : CharacterBody3D
 	public void PopupExternalCall(string PopupMessage)
 	{
 		PopupExternal.Text = PopupMessage;
-		PopupExternalHideTimer.Start();
+		PopupExternalHideTimer.Start(PopupMessage.Length / 3);
 	}
 	public void PopupExternalHideTimerTimeout()
 	{
