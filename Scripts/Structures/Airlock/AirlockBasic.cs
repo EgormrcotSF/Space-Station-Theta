@@ -9,8 +9,10 @@ public partial class AirlockBasic : StaticBody3D, Interaction
 	private CollisionShape3D Collision;
 	private AnimatedSprite3D Sprite;
 	private Timer CloseTimer;
+	[Export] private Timer OpenTimer;
 
 	private bool Open = false;
+	private bool AirlockAction = false;
 
 	public override void _Ready()
 	{
@@ -26,10 +28,10 @@ public partial class AirlockBasic : StaticBody3D, Interaction
 	}
 
 	public void PickUp(CharacterBody3D Picker)
-    {
+	{
 		//This method calls a method with RPC (yes, this is kinda crutch but idk how do i should do normally)
-        Rpc("RpcInteract");
-    }
+		Rpc("RpcInteract");
+	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	public void RpcInteract()
@@ -59,25 +61,40 @@ public partial class AirlockBasic : StaticBody3D, Interaction
 		CloseAirlock();
 	}
 
-	private void OpenAirlock()
+	private void OpenTimerTimeout()
 	{
-		if (!Open)
+		AirlockAction = false;
+		if (Open)
 		{
-			Open = true;
-			Sprite.Play("Open");
 			Collision.SetDeferred("disabled", true);
+		}
+		else
+		{
+			Collision.SetDeferred("disabled", false);
 			//start door close timer
 			CloseTimer.Start();
 		}
 	}
 
+	private void OpenAirlock()
+	{
+		if (!Open && !AirlockAction)
+		{
+			Open = true;
+			Sprite.Play("Open");
+			AirlockAction = true;
+			OpenTimer.Start();
+		}
+	}
+
 	private void CloseAirlock()
 	{
-		if (Open)
+		if (Open && !AirlockAction)
 		{
 			Open = false;
 			Sprite.PlayBackwards("Open");
-			Collision.SetDeferred("disabled", false);
+			AirlockAction = true;
+			OpenTimer.Start();
 			//if player interacted door before timer ends, timer stops
 			CloseTimer.Stop();
 		}
