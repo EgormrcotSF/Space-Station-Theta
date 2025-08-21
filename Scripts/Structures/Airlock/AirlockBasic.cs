@@ -6,20 +6,13 @@ using System.Runtime.CompilerServices;
 
 public partial class AirlockBasic : StaticBody3D, Interaction
 {
-	private CollisionShape3D Collision;
-	private AnimatedSprite3D Sprite;
-	private Timer CloseTimer;
+	[Export] private CollisionShape3D Collision;
+	[Export] private AnimatedSprite3D Sprite;
+	[Export] private Timer CloseTimer;
 	[Export] private Timer OpenTimer;
 
 	private bool Open = false;
 	private bool AirlockAction = false;
-
-	public override void _Ready()
-	{
-		Collision = GetNode<CollisionShape3D>("CollisionShape3D");
-		Sprite = GetNode<AnimatedSprite3D>("AnimatedSprite3D");
-		CloseTimer = GetNode<Timer>("CloseTimer");
-	}
 
 	public void Interact()
 	{
