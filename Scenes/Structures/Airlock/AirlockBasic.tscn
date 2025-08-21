@@ -62,9 +62,12 @@ size = Vector3(0.32, 0.01, 0.32)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ls4yu"]
 size = Vector3(0.328, 0.328, 0.04)
 
-[node name="AirlockBasic" type="StaticBody3D" node_paths=PackedStringArray("OpenTimer")]
+[node name="AirlockBasic" type="StaticBody3D" node_paths=PackedStringArray("Collision", "Sprite", "CloseTimer", "OpenTimer")]
 transform = Transform3D(3.125, 0, 0, 0, 3.125, 0, 0, 0, 3.125, 0, 0, 0)
 script = ExtResource("1_pirku")
+Collision = NodePath("CollisionShape3D")
+Sprite = NodePath("AnimatedSprite3D")
+CloseTimer = NodePath("CloseTimer")
 OpenTimer = NodePath("OpenTimer")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
